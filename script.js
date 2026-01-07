@@ -1,7 +1,7 @@
 // Three variables for each part of a calculator operation
-let operandA;
-let operandB;
-let operator;
+let operandA = '';
+let operandB = '';
+let operator = '';
 
 function operate(operator, numA, numB){
 	let result = 0;
@@ -40,3 +40,27 @@ function multiply(a, b){
 function divide(a, b){
 	return a / b;
 }
+
+const digitBtns = document.querySelectorAll('.digit');
+const display = document.querySelector('.display');
+
+// Add a 'click' event listener to each of the digit buttons
+digitBtns.forEach( (button) => button.addEventListener('click', (event) => {
+	const text = event.target.textContent;
+	displayTextContent(display, text);
+	operandA = createOperand(operandA, text);
+}));
+
+
+// make a function that displays the text content of each button
+function displayTextContent(display, text){
+	display.textContent += text;
+}
+
+// make a function that concatenates the text of a digit button 
+// to an operand value
+function createOperand(operand, text){
+	return operand += text;
+}
+
+
