@@ -49,13 +49,13 @@ const buffer = [];
 
 // Add a 'click' event listener to each of the digit buttons
 digitBtns.forEach( (button) => button.addEventListener('click', (event) => {
-	// if there is a value assigned to the operator variable, clear the display to prepare for the next number
-	// to be entered
-	if (operator){
+	// clear the display if there are no items in the buffer
+	if (buffer.length < 1){
 		display.textContent = '';
 	}
 	const text = event.target.textContent;
 	displayTextContent(display, text);
+	// add the character to the buffer
 	buffer.push(text);
 }));
 
@@ -85,6 +85,7 @@ operators.addEventListener('click', (event) => {
 
 	// assign the clicked operator to the operator variable
 	operator = event.target.textContent;
+
 })
 
 
