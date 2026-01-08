@@ -43,17 +43,54 @@ function divide(a, b){
 
 const digitBtns = document.querySelectorAll('.digit');
 const display = document.querySelector('.display');
+const operators = document.querySelector('.operators');
+
+const buffer = [];
 
 // Add a 'click' event listener to each of the digit buttons
 digitBtns.forEach( (button) => button.addEventListener('click', (event) => {
+	// if there is a value assigned to the operator variable, clear the display to prepare for the next number
+	// to be entered
+	if (operator){
+		display.textContent = '';
+	}
 	const text = event.target.textContent;
 	displayTextContent(display, text);
-	operandA = createOperand(operandA, text);
+	buffer.push(text);
 }));
+
+operators.addEventListener('click', (event) => {
+	// When an operator is clicked, if the buffer has a number, store the number 
+	// the number becomes the first operand if it is not there, otherwise the second operand
+	if (buffer.length > 0){
+		let number = buffer.join('');
+		if (!operandA){
+			operandA =  number;
+		}
+		else{
+			operandB = number;
+		}
+		// clear the buffer, after assigning contents to a variable
+		buffer.length = 0;
+	}
+
+		// check whether a calculation can be performed
+	if (operandA && operandB && operator){
+		let result = operate(operator, +operandA, +operandB);
+		display.textContent = result;
+		// the result becomes the first operand of the next operation, and operandB is made available for a new number
+		operandA = result;
+		operandB = '';
+	}
+
+	// assign the clicked operator to the operator variable
+	operator = event.target.textContent;
+})
 
 
 // make a function that displays the text content of each button
 function displayTextContent(display, text){
 	display.textContent += text;
 }
+
 
