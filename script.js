@@ -57,10 +57,3 @@ function displayTextContent(display, text){
 	display.textContent += text;
 }
 
-// make a function that concatenates the text of a digit button 
-// to an operand value
-function createOperand(operand, text){
-	return operand += text;
-}
-
-
