@@ -77,7 +77,10 @@ operators.addEventListener('click', (event) => {
 		// check whether a calculation can be performed
 	if (operandA && operandB && operator){
 		let result = operate(operator, +operandA, +operandB);
+		// if the length of the result is longer than 8(including - and .) round for display
+		result = result.toString().length > 8? result.toFixed(8): result;
 		display.textContent = result;
+
 		// the result becomes the first operand of the next operation, and operandB is made available for a new number
 		operandA = result;
 		operandB = '';
@@ -93,5 +96,9 @@ operators.addEventListener('click', (event) => {
 function displayTextContent(display, text){
 	display.textContent += text;
 }
+
+// clear function - clear the operands, the operator, the display and the buffer
+
+
 
 
