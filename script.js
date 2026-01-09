@@ -45,19 +45,32 @@ const digitBtns = document.querySelectorAll('.digit');
 const display = document.querySelector('.display');
 const operators = document.querySelector('.operators');
 const clearBtn = document.querySelector('.clear');
+const decimalBtn = document.querySelector('.decimal');
 
 const buffer = [];
 
 // Add a 'click' event listener to each of the digit buttons
 digitBtns.forEach( (button) => button.addEventListener('click', (event) => {
-	// clear the display if there are no items in the buffer
+
+
+	// clear the display if there are no items in the buffer(the buffer is cleared when an operator btn is pressed)
 	if (buffer.length < 1){
+		decimalBtn.disabled = false;
 		display.textContent = '';
 	}
 	const text = event.target.textContent;
+
+	// if the textcontent of the button pressed is '.' and the display text content
+	// already contains a '.' then don't add it to the display and disable the decimal button
+	if (text === '.' && display.textContent.includes('.')){
+		decimalBtn.disabled = true;
+	}
+	else{
 	displayTextContent(display, text);
 	// add the character to the buffer
 	buffer.push(text);
+	}
+
 }));
 
 operators.addEventListener('click', (event) => {
