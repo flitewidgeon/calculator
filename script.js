@@ -44,6 +44,7 @@ function divide(a, b){
 const digitBtns = document.querySelectorAll('.digit');
 const display = document.querySelector('.display');
 const operators = document.querySelector('.operators');
+const clearBtn = document.querySelector('.clear');
 
 const buffer = [];
 
@@ -98,7 +99,15 @@ function displayTextContent(display, text){
 }
 
 // clear function - clear the operands, the operator, the display and the buffer
+function clear(){
+	operandA = '';
+	operandB = '';
+	operator = '';
+	display.textContent = '';
+	buffer.length = 0;
+}
 
+clearBtn.addEventListener('click', clear);
 
 
 
