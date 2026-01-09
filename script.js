@@ -69,7 +69,15 @@ operators.addEventListener('click', (event) => {
 			operandA =  number;
 		}
 		else{
-			operandB = number;
+			// don't let user divide by 0: display message, and do not assign 0 to operandB
+			// also clear operandA and operator and the buffer, so user has to start again
+			if (operator === '/' && number === '0'){
+				display.textContent = 'DIVISION BY ZERO!';
+				clearData();
+			}
+			else{
+				operandB = number;
+			}
 		}
 		// clear the buffer, after assigning contents to a variable
 		buffer.length = 0;
@@ -98,13 +106,17 @@ function displayTextContent(display, text){
 	display.textContent += text;
 }
 
-// clear function - clear the operands, the operator, the display and the buffer
-function clear(){
+function clearData(){
 	operandA = '';
 	operandB = '';
 	operator = '';
-	display.textContent = '';
 	buffer.length = 0;
+}
+
+// clear function - clear all data and display
+function clear(){
+	clearData();
+	display.textContent = '';
 }
 
 clearBtn.addEventListener('click', clear);
