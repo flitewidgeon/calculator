@@ -41,9 +41,9 @@ function divide(a, b){
 	return a / b;
 }
 
-const digitBtns = document.querySelectorAll('.digit');
 const display = document.querySelector('.display');
-const operators = document.querySelector('.operators');
+const digitBtns = document.querySelectorAll('.digit');
+const operatorBtns = document.querySelectorAll('.operator');
 const clearBtn = document.querySelector('.clear');
 const decimalBtn = document.querySelector('.decimal');
 
@@ -73,7 +73,7 @@ digitBtns.forEach( (button) => button.addEventListener('click', (event) => {
 
 }));
 
-operators.addEventListener('click', (event) => {
+operatorBtns.forEach((button) => button.addEventListener('click', (event) => {
 	// When an operator is clicked, if the buffer has a number, store the number 
 	// the number becomes the first operand if it is not there, otherwise the second operand
 	if (buffer.length > 0){
@@ -111,7 +111,7 @@ operators.addEventListener('click', (event) => {
 	// assign the clicked operator to the operator variable
 	operator = event.target.textContent;
 
-})
+}));
 
 
 // make a function that displays the text content of each button
