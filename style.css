@@ -5,7 +5,7 @@
 }
 
 .container{
-	margin: 0 auto;
+	margin: 20px auto;
 	border: 2px solid black;
 	border-radius: 5px;
 	height: 600px;
@@ -37,6 +37,7 @@ div button{
 }
 
 .display{
+
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
